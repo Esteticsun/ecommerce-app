@@ -21,6 +21,7 @@ let currentIndex = 0;
 function zoomImage(src) {
   modal.style.display = "block";
   modalImg.src = src;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderShop() {
