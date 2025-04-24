@@ -21,7 +21,6 @@ let currentIndex = 0;
 function zoomImage(src) {
   modal.style.display = "block";
   modalImg.src = src;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderShop() {
@@ -52,7 +51,7 @@ function renderShop() {
     div.classList.add('product');
     div.innerHTML = `
       <div class="product-image">
-        <img src="${p.image}" onclick="zoomImage('${p.image}')" />
+        <img src="${p.image}" onclick="zoomImage('${p.image}', event)" />
       </div>
       <div class="product-details">
         <h3>${p.name}</h3>
