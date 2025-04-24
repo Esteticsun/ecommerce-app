@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrello - Epilis</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="LOGO EPILIS ORIZZONTALE.jpg" alt="Logo Epilis" id="logo" />
+    <button onclick="window.location.href='index.html'" class="top-button">← Torna al catalogo</button>
+  </header>
+
+  <h1>Carrello</h1>
+  <div id="cart"></div>
+
+  <button id="show-shipping" class="primary-button">📦 Dati della spedizione</button>
+
+  <div id="shipping-form" style="display:none;">
+    <h2>Dati Cliente</h2>
+    <form id="checkout-form">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="phone" placeholder="Telefono" required />
+      <input type="text" id="company" placeholder="Ragione sociale" />
+      <input type="text" id="address" placeholder="Indirizzo di spedizione" required />
+      <button type="submit">Procedi al pagamento</button>
+    </form>
+  </div>
+
+  <script src="products.js"></script>
+  <script>
+    const cartDiv = document.getElementById('cart');
+    const formSection = document.getElementById('shipping-form');
+    const showShippingBtn = document.getElementById('show-shipping');
+    const checkoutForm = document.getElementById('checkout-form');
+
+    let cart = JSON.parse(localStorage.getItem('cart') || '{}');
+
+    function renderCart() {
+      cartDiv.innerHTML = '';
+      let subtotal = 0;
+      for (let id in cart) {
+        const item = cart[id];
+        const total = item.price * item.qty;
+        subtotal += total;
+        cartDiv.innerHTML += `
+          ${item.name} - €${item.price.toFixed(2)} x ${item.qty} = €${total.toFixed(2)}<br/>
+        `;
+      }
+
+      const shipping = subtotal >= 300 ? 0 : 9;
+      const total = subtotal + shipping;
+
+      cartDiv.innerHTML += `<p>Spese di spedizione: €${shipping.toFixed(2)}</p>`;
+      cartDiv.innerHTML += `<p><strong>Totale: €${total.toFixed(2)}</strong></p>`;
+    }
+
+    showShippingBtn.addEventListener('click', () => {
+      formSection.style.display = 'block';
+      showShippingBtn.style.display = 'none';
+    });
+
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const company = document.getElementById('company').value;
+      const address = document.getElementById('address').value;
+      console.log("Ordine da inviare a pagamento:", { cart, email, phone, company, address });
+      alert("Simulazione completata: collegare Stripe/PayPal qui.");
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

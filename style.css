@@ -1,15 +1,47 @@
 body {
   font-family: sans-serif;
   margin: 20px;
+  background-color: #fefefe;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#logo {
+  height: 60px;
 }
 input, button, select, textarea {
   margin: 5px 0;
+  padding: 8px;
+  font-size: 14px;
   display: block;
+  width: 100%;
+  max-width: 400px;
 }
 img {
   max-width: 150px;
   margin: 10px 0;
   display: block;
+  cursor: pointer;
+}
+.top-button {
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.primary-button {
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  border-radius: 4px;
   cursor: pointer;
 }
 .modal {

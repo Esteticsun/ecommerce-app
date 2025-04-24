@@ -2,10 +2,15 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Shop</title>
+  <title>Shop - Epilis</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <img src="LOGO EPILIS ORIZZONTALE.jpg" alt="Logo Epilis" id="logo" />
+    <button onclick="window.location.href='cart.html'" class="top-button">🛒 Carrello</button>
+  </header>
+
   <h1>Catalogo Prodotti</h1>
 
   <input type="text" id="search" placeholder="Cerca prodotti..." />
@@ -17,18 +22,6 @@
 
   <div id="shop"></div>
   <button id="load-more">Carica altri</button>
-
-  <h2>Carrello</h2>
-  <div id="cart"></div>
-
-  <h2>Dati Cliente</h2>
-  <form id="checkout-form">
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="text" id="phone" placeholder="Telefono" required />
-    <input type="text" id="company" placeholder="Ragione sociale" />
-    <input type="text" id="address" placeholder="Indirizzo di spedizione" required />
-    <button type="submit">Procedi al pagamento</button>
-  </form>
 
   <!-- Modale per ingrandimento immagine -->
   <div id="image-modal" class="modal">
