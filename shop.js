@@ -1,12 +1,9 @@
 const shop = document.getElementById('shop');
-const cartDiv = document.getElementById('cart');
-const checkoutForm = document.getElementById('checkout-form');
 const searchInput = document.getElementById('search');
 const sortSelect = document.getElementById('sort');
 const filterSelect = document.getElementById('filter');
 const loadMoreBtn = document.getElementById('load-more');
 
-// Modale immagine
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-img");
 const modalClose = document.querySelector(".close");
@@ -16,7 +13,7 @@ window.onclick = function(event) {
   if (event.target == modal) modal.style.display = "none";
 };
 
-let cart = {};
+let cart = JSON.parse(localStorage.getItem('cart') || '{}');
 let productsToShow = 6;
 let currentIndex = 0;
 
@@ -88,41 +85,9 @@ function addToCart(id) {
   } else {
     cart[id] = { ...product, qty };
   }
-  renderCart();
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert("Prodotto aggiunto al carrello.");
 }
-
-function renderCart() {
-  cartDiv.innerHTML = '';
-  let subtotal = 0;
-  for (let id in cart) {
-    const item = cart[id];
-    const total = item.price * item.qty;
-    subtotal += total;
-    cartDiv.innerHTML += `
-      ${item.name} - €${item.price.toFixed(2)} x ${item.qty} = €${total.toFixed(2)}<br/>
-    `;
-  }
-
-  const shipping = subtotal >= 300 ? 0 : 9;
-  const total = subtotal + shipping;
-
-  cartDiv.innerHTML += `<p>Spese di spedizione: €${shipping.toFixed(2)}</p>`;
-  cartDiv.innerHTML += `<p><strong>Totale: €${total.toFixed(2)}</strong></p>`;
-}
-
-checkoutForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
-  const company = document.getElementById('company').value;
-  const address = document.getElementById('address').value;
-
-  console.log("Ordine da inviare a pagamento:");
-  console.log({ cart, email, phone, company, address });
-
-  alert("Simulazione completata: collegare Stripe/PayPal qui.");
-});
 
 searchInput.addEventListener('input', renderShop);
 sortSelect.addEventListener('change', renderShop);
