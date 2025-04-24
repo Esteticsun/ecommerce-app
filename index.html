@@ -8,10 +8,18 @@
 <body>
   <header>
     <img src="LOGO EPILIS ORIZZONTALE.jpg" alt="Logo Epilis" id="logo" />
+    <div id="title-section">
+      <h1>EPILIS</h1>
+      <p>Epiliazione bio innovativa per il tuo benessere naturale</p>
+    </div>
     <button onclick="window.location.href='cart.html'" class="top-button">🛒 Carrello</button>
   </header>
 
-  <h1>Catalogo Prodotti</h1>
+  <div class="view-toggle">
+    <button onclick="setView('wide')">📦 Griglia ampia</button>
+    <button onclick="setView('compact')">🗂️ Griglia compatta</button>
+    <button onclick="setView('list')">📋 Elenco</button>
+  </div>
 
   <input type="text" id="search" placeholder="Cerca prodotti..." />
   <select id="sort">
@@ -23,7 +31,6 @@
   <div id="shop"></div>
   <button id="load-more">Carica altri</button>
 
-  <!-- Modale per ingrandimento immagine -->
   <div id="image-modal" class="modal">
     <span class="close">&times;</span>
     <img class="modal-content" id="modal-img" />
