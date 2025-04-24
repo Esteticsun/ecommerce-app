@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Gestione Prodotti</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Gestione Prodotti</h1>
+  <form id="product-form">
+    <input type="text" id="product-name" placeholder="Nome prodotto" required />
+    <input type="number" id="product-price" placeholder="Prezzo" required />
+    <input type="file" id="product-image" accept="image/*" required />
+    <button type="submit">Aggiungi prodotto</button>
+  </form>
+
+  <h2>Prodotti esistenti</h2>
+  <div id="product-list"></div>
+
+  <script src="products.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

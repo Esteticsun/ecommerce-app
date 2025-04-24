@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Catalogo Prodotti</h1>
+  <div id="shop"></div>
+
+  <h2>Carrello</h2>
+  <div id="cart"></div>
+
+  <h2>Dati Cliente</h2>
+  <form id="checkout-form">
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="text" id="phone" placeholder="Telefono" required />
+    <input type="text" id="company" placeholder="Ragione sociale" />
+    <input type="text" id="address" placeholder="Indirizzo di spedizione" required />
+    <button type="submit">Procedi al pagamento</button>
+  </form>
+
+  <script src="products.js"></script>
+  <script src="shop.js"></script>
+</body>
+</html>
