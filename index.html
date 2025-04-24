@@ -7,7 +7,16 @@
 </head>
 <body>
   <h1>Catalogo Prodotti</h1>
+
+  <input type="text" id="search" placeholder="Cerca prodotti..." />
+  <select id="sort">
+    <option value="name">Ordina per nome</option>
+    <option value="price">Ordina per prezzo</option>
+  </select>
+  <select id="filter"></select>
+
   <div id="shop"></div>
+  <button id="load-more">Carica altri</button>
 
   <h2>Carrello</h2>
   <div id="cart"></div>

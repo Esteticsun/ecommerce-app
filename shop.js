@@ -1,22 +1,70 @@
 const shop = document.getElementById('shop');
 const cartDiv = document.getElementById('cart');
 const checkoutForm = document.getElementById('checkout-form');
+const searchInput = document.getElementById('search');
+const sortSelect = document.getElementById('sort');
+const filterSelect = document.getElementById('filter');
+const loadMoreBtn = document.getElementById('load-more');
 
 let cart = {};
+let productsToShow = 6;
+let currentIndex = 0;
+
+function zoomImage(src) {
+  window.open(src, "_blank");
+}
 
 function renderShop() {
-  const products = getProducts();
+  let products = getProducts();
+
+  const searchTerm = searchInput.value.toLowerCase();
+  const categoryFilter = filterSelect.value;
+  const sortBy = sortSelect.value;
+
+  if (searchTerm) {
+    products = products.filter(p => p.name.toLowerCase().includes(searchTerm));
+  }
+
+  if (categoryFilter) {
+    products = products.filter(p => p.category === categoryFilter);
+  }
+
+  if (sortBy === 'name') {
+    products.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortBy === 'price') {
+    products.sort((a, b) => a.price - b.price);
+  }
+
+  const visible = products.slice(0, currentIndex + productsToShow);
   shop.innerHTML = '';
-  products.forEach((p) => {
+  visible.forEach((p) => {
     const div = document.createElement('div');
     div.innerHTML = `
       <h3>${p.name}</h3>
-      <img src="${p.image}" />
+      <img src="${p.image}" onclick="zoomImage('${p.image}')" style="cursor:pointer;" />
+      <p><strong>Categoria:</strong> ${p.category}</p>
+      <p>${p.description}</p>
+      <p><strong>Disponibilità:</strong> ${p.stock}</p>
       <p>€${p.price.toFixed(2)}</p>
       <input type="number" min="1" value="1" id="qty-${p.id}" />
       <button onclick="addToCart(${p.id})">Aggiungi al carrello</button>
     `;
     shop.appendChild(div);
+  });
+
+  loadMoreBtn.style.display = (products.length > visible.length) ? 'block' : 'none';
+
+  updateCategoryFilterOptions(products);
+}
+
+function updateCategoryFilterOptions(products) {
+  const categories = Array.from(new Set(getProducts().map(p => p.category)));
+  filterSelect.innerHTML = '<option value="">Tutte le categorie</option>';
+  categories.forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat;
+    opt.textContent = cat;
+    filterSelect.appendChild(opt);
   });
 }
 
@@ -63,6 +111,14 @@ checkoutForm.addEventListener('submit', (e) => {
   console.log({ cart, email, phone, company, address });
 
   alert("Simulazione completata: collegare Stripe/PayPal qui.");
+});
+
+searchInput.addEventListener('input', renderShop);
+sortSelect.addEventListener('change', renderShop);
+filterSelect.addEventListener('change', renderShop);
+loadMoreBtn.addEventListener('click', () => {
+  currentIndex += productsToShow;
+  renderShop();
 });
 
 renderShop();
