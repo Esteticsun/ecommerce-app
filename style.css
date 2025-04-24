@@ -58,6 +58,7 @@ input, button, select, textarea {
 
 .product {
   display: flex;
+  align-items: flex-start;
   gap: 20px;
   margin: 20px 0;
   padding: 15px;
@@ -65,9 +66,9 @@ input, button, select, textarea {
 }
 
 .product img {
-  width: 120px;
+  width: 100px;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .product-details {
