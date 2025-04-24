@@ -6,12 +6,23 @@ const sortSelect = document.getElementById('sort');
 const filterSelect = document.getElementById('filter');
 const loadMoreBtn = document.getElementById('load-more');
 
+// Modale immagine
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img");
+const modalClose = document.querySelector(".close");
+
+modalClose.onclick = () => modal.style.display = "none";
+window.onclick = function(event) {
+  if (event.target == modal) modal.style.display = "none";
+};
+
 let cart = {};
 let productsToShow = 6;
 let currentIndex = 0;
 
 function zoomImage(src) {
-  window.open(src, "_blank");
+  modal.style.display = "block";
+  modalImg.src = src;
 }
 
 function renderShop() {
