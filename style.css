@@ -10,6 +10,7 @@ img {
   max-width: 150px;
   margin: 10px 0;
   display: block;
+  cursor: pointer;
 }
 .modal {
   display: none;

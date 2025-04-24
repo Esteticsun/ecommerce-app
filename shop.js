@@ -52,7 +52,7 @@ function renderShop() {
     const div = document.createElement('div');
     div.innerHTML = `
       <h3>${p.name}</h3>
-      <img src="${p.image}" onclick="zoomImage('${p.image}')" style="cursor:pointer;" />
+      <img src="${p.image}" onclick="zoomImage('${p.image}')" />
       <p><strong>Categoria:</strong> ${p.category}</p>
       <p>${p.description}</p>
       <p><strong>Disponibilità:</strong> ${p.stock}</p>
