@@ -1,3 +1,4 @@
+
 const shop = document.getElementById('shop');
 const searchInput = document.getElementById('search');
 const sortSelect = document.getElementById('sort');
@@ -47,21 +48,25 @@ function renderShop() {
   shop.innerHTML = '';
   visible.forEach((p) => {
     const div = document.createElement('div');
+    div.classList.add('product');
     div.innerHTML = `
-      <h3>${p.name}</h3>
-      <img src="${p.image}" onclick="zoomImage('${p.image}')" />
-      <p><strong>Categoria:</strong> ${p.category}</p>
-      <p>${p.description}</p>
-      <p><strong>Disponibilità:</strong> ${p.stock}</p>
-      <p>€${p.price.toFixed(2)}</p>
-      <input type="number" min="1" value="1" id="qty-${p.id}" />
-      <button onclick="addToCart(${p.id})">Aggiungi al carrello</button>
+      <div class="product-image">
+        <img src="${p.image}" onclick="zoomImage('${p.image}')" />
+      </div>
+      <div class="product-details">
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <p><strong>Categoria:</strong> ${p.category}</p>
+        <p><strong>Disponibilità:</strong> ${p.stock}</p>
+        <p class="product-price">€${p.price.toFixed(2)}</p>
+        <input type="number" min="1" value="1" id="qty-${p.id}" />
+        <button onclick="addToCart(${p.id})">Aggiungi al carrello</button>
+      </div>
     `;
     shop.appendChild(div);
   });
 
   loadMoreBtn.style.display = (products.length > visible.length) ? 'block' : 'none';
-
   updateCategoryFilterOptions(products);
 }
 
